@@ -3,6 +3,8 @@ import { useState } from "react";
 function App() {
   const [input, setInput] = useState("");
   const [result, setResult] = useState(0);
+  const [error, setError] = useState("");
+
   const handleClick = () => {
     let operations = input.split(" ");
     let stack = [];
@@ -22,25 +24,33 @@ function App() {
           stack.push(tempResult);
           break;
         default:
-          stack.push(parseInt(value));
+          let valueInt = parseInt(value);
+          if (isNaN(valueInt)) {
+            setError(
+              `I'm sorry ${value} is not a number, the character will be omitted`
+            );
+          } else {
+            stack.push(parseInt(value));
+          }
       }
     }
     setResult(stack.pop());
   };
 
+  const handleInput = (e) => {
+    setInput(e.target.value);
+    setError("");
+  };
+
   return (
     <div>
       <label>Introduce the operations</label>
-      <input
-        type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-      />
+      <input type="text" value={input} onChange={(e) => handleInput(e)} />
       <button onClick={handleClick}>Calculate</button>
       <br />
       <span>{`Result= ${result}`}</span>
       <br />
-      <span>{input}</span>
+      {error !== "" ? <span>{error}</span> : null}
     </div>
   );
 }
