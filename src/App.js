@@ -6,14 +6,35 @@ function App() {
   const handleClick = () => {
     let operations = input.split(" ");
     let stack = [];
+    let value1 = 0;
+    let value2 = 0;
+    let tempResult = 0;
     for (let i = 0; i < operations.length; i++) {
       let value = operations[i];
       switch (value) {
         case "+":
-          let valor1 = stack.pop();
-          let valor2 = stack.pop();
-          let resultado = valor2 + valor1;
-          stack.push(resultado);
+          value1 = stack.pop();
+          value2 = stack.pop();
+          tempResult = value2 + value1;
+          stack.push(tempResult);
+          break;
+        case "-":
+          value1 = stack.pop();
+          value2 = stack.pop();
+          tempResult = value2 - value1;
+          stack.push(tempResult);
+          break;
+        case "*":
+          value1 = stack.pop();
+          value2 = stack.pop();
+          tempResult = value2 * value1;
+          stack.push(tempResult);
+          break;
+        case "/":
+          value1 = stack.pop();
+          value2 = stack.pop();
+          tempResult = value2 / value1;
+          stack.push(tempResult);
           break;
         default:
           stack.push(parseInt(value));
