@@ -10,16 +10,19 @@ function App() {
   const [input, setInput] = useState("");
   const [result, setResult] = useState(0);
   const [error, setError] = useState("");
+  const [isCalculating, setIsCalculating] = useState(true);
 
   const handleClick = () => {
     let { err, stack } = calculate(input);
     setResult(stack.pop());
+    setIsCalculating(false);
     if (err !== "") setError(err);
   };
 
   const handleInput = (e) => {
     setInput(e.target.value);
     setError("");
+    setIsCalculating(true);
   };
 
   return (
@@ -50,19 +53,34 @@ function App() {
       </Stack>
       <br />
       <Typography component="div">
-        <Box
-          sx={{
-            color: "green",
-            fontFamily: "Monospace",
-            fontSize: "h3.fontSize",
-            m: 1,
-          }}
-        >
-          {`Result= ${result}`}
-        </Box>
+        {!isCalculating ? (
+          <Box
+            sx={{
+              color: "green",
+              fontFamily: "Monospace",
+              fontSize: "h3.fontSize",
+              m: 1,
+            }}
+          >
+            {`Result = ${result}`}
+          </Box>
+        ) : null}
       </Typography>
       <br />
-      {error !== "" ? <span>{error}</span> : null}
+      {error !== "" ? (
+        <Typography component="div">
+          <Box
+            sx={{
+              color: "red",
+              fontFamily: "Monospace",
+              fontSize: "h6.fontSize",
+              m: 1,
+            }}
+          >
+            {error}
+          </Box>
+        </Typography>
+      ) : null}
     </div>
   );
 }
