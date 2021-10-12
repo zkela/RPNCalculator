@@ -2,11 +2,11 @@
 
 This is an example of a Reverse Polish Notation Calculator.
 
-For the moment the only available operators are: + - _ /
+For the moment the only available operators are: + - * /
 
-You can introduce numbers and the operators: [0-9] [+,-,_,/]
+You can introduce numbers and the operators: [0-9] [+,-,*,/]
 
-Special characters like [%] will be omitted from the calculus
+Special characters like [%,&,$] will be omitted from the calculus
 
 ## Available Scripts
 
