@@ -13,27 +13,12 @@ function App() {
       let value = operations[i];
       switch (value) {
         case "+":
-          value1 = stack.pop();
-          value2 = stack.pop();
-          tempResult = value2 + value1;
-          stack.push(tempResult);
-          break;
         case "-":
-          value1 = stack.pop();
-          value2 = stack.pop();
-          tempResult = value2 - value1;
-          stack.push(tempResult);
-          break;
         case "*":
-          value1 = stack.pop();
-          value2 = stack.pop();
-          tempResult = value2 * value1;
-          stack.push(tempResult);
-          break;
         case "/":
           value1 = stack.pop();
           value2 = stack.pop();
-          tempResult = value2 / value1;
+          tempResult = eval(value2 + value + value1);
           stack.push(tempResult);
           break;
         default:
