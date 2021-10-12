@@ -27,60 +27,77 @@ function App() {
 
   return (
     <div>
-      <Stack spacing={2} direction="row">
-        <Box
-          component="form"
-          sx={{
-            "& .MuiTextField-root": { m: 1, width: "50ch" },
-          }}
-          noValidate
-          autoComplete="off"
-        >
-          <div>
-            <TextField
-              label="Introduce Operations"
-              id="outlined-size-small"
-              defaultValue="Small"
-              size="small"
-              value={input}
-              onChange={(e) => handleInput(e)}
-            />
-          </div>
-        </Box>
-        <Button variant="contained" onClick={handleClick}>
-          Calculate
-        </Button>
-      </Stack>
-      <br />
-      <Typography component="div">
-        {!isCalculating ? (
-          <Box
-            sx={{
-              color: "green",
-              fontFamily: "Monospace",
-              fontSize: "h3.fontSize",
-              m: 1,
-            }}
-          >
-            {`Result = ${result}`}
-          </Box>
-        ) : null}
-      </Typography>
-      <br />
-      {error !== "" ? (
+      <div>
         <Typography component="div">
           <Box
             sx={{
-              color: "red",
+              color: "black",
               fontFamily: "Monospace",
-              fontSize: "h6.fontSize",
+              fontSize: "h2.fontSize",
               m: 1,
             }}
           >
-            {error}
+            RPN Calculator
           </Box>
         </Typography>
-      ) : null}
+      </div>
+      <div>
+        <div style={{ textAlign: "center" }}>
+          <Stack spacing={2} direction="row">
+            <Box
+              component="form"
+              sx={{
+                "& .MuiTextField-root": { m: 1, width: "50ch" },
+              }}
+              noValidate
+              autoComplete="off"
+            >
+              <div>
+                <TextField
+                  label="Introduce Operations"
+                  id="outlined-size-small"
+                  size="small"
+                  value={input}
+                  onChange={(e) => handleInput(e)}
+                />
+              </div>
+            </Box>
+            <Button variant="contained" onClick={handleClick}>
+              Calculate
+            </Button>
+          </Stack>
+          <br />
+          <Typography component="div">
+            {!isCalculating ? (
+              <Box
+                sx={{
+                  color: "green",
+                  fontFamily: "Monospace",
+                  fontSize: "h3.fontSize",
+                  m: 1,
+                }}
+              >
+                {`Result = ${result}`}
+              </Box>
+            ) : null}
+          </Typography>
+          <br />
+          {error !== "" ? (
+            <Typography component="div">
+              <Box
+                sx={{
+                  color: "red",
+                  fontFamily: "Monospace",
+                  fontSize: "h6.fontSize",
+                  m: 1,
+                }}
+              >
+                {error}
+              </Box>
+            </Typography>
+          ) : null}
+        </div>
+      </div>
     </div>
   );
 }
