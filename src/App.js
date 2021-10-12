@@ -1,36 +1,22 @@
 import { useState } from "react";
+
 function App() {
+  const [input, setInput] = useState("");
   const [result, setResult] = useState(0);
-  const [operations, setOperations] = useState("5 5 5 8 + + -");
-  const [stack, setStack] = useState([]);
-
   const handleClick = () => {
-    let array = operations.split(" ");
-
-    for (let i = 0; i < array.length; i++) {
-      let value = array[i];
+    let operations = input.split(" ");
+    let stack = [];
+    for (let i = 0; i < operations.length; i++) {
+      let value = operations[i];
       switch (value) {
         case "+":
-          const newStack = [];
-          newStack.push(...array);
-          console.log(newStack);
-          let value1 = newStack.pop();
-          console.log(value1);
-          let value2 = newStack.pop();
-          console.log(value2);
-
-          setStack([...newStack]);
-
-          setResult(value1 + value2);
-          setStack([...stack, result]);
-          // stack.push(result);
+          let valor1 = stack.pop();
+          let valor2 = stack.pop();
+          let resultado = valor2 + valor1;
+          stack.push(resultado);
           break;
-        case "-":
-        case "*":
-        case "/":
         default:
-          setStack([...stack, parseInt(value)]);
-        // stack.push(parseInt(value));
+          stack.push(parseInt(value));
       }
     }
     setResult(stack.pop());
@@ -41,14 +27,14 @@ function App() {
       <label>Introduce the operations</label>
       <input
         type="text"
-        value={operations}
-        onChange={(e) => setOperations(e.target.value)}
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
       />
       <button onClick={handleClick}>Calculate</button>
       <br />
       <span>{`Result= ${result}`}</span>
       <br />
-      <span>{operations}</span>
+      <span>{input}</span>
     </div>
   );
 }
