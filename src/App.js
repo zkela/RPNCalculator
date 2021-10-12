@@ -6,10 +6,16 @@ function App() {
   return (
     <div>
       <label>Introduce the operations</label>
-      <input type="text" />
+      <input
+        type="text"
+        value={operations}
+        onChange={(e) => setOperations(e.target.value)}
+      />
       <button>Calculate</button>
       <br />
       <span>{`Result= ${result}`}</span>
+      <br />
+      <span>{operations}</span>
     </div>
   );
 }
